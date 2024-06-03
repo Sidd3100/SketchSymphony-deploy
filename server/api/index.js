@@ -24,19 +24,18 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
         console.error('Error connecting to MongoDB', err);
     });
 
-
-app.use('/api/user',userRouter)
-app.use('/api/auth',authRouter)
-app.use('/api/listing',listingRouter);
+app.use('/api/user', userRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/listing', listingRouter);
 
 const __dirname = path.resolve();
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 
 // The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build/index.html'));
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 // Middleware for handling errors
